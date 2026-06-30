@@ -1,0 +1,305 @@
+{
+    "version": 1.1,
+    "tags": [
+        {
+            "name": "x-media-library-helpers-banner-single-manager",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "collapsable",
+                    "description": ""
+                },
+                {
+                    "name": "collapsed",
+                    "description": ""
+                },
+                {
+                    "name": "disable-multilingual",
+                    "description": ""
+                },
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "with-credit",
+                    "description": ""
+                },
+                {
+                    "name": "with-link",
+                    "description": ""
+                },
+                {
+                    "name": "with-teaser",
+                    "description": ""
+                },
+                {
+                    "name": "with-teaser-complement",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-banners-manager",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "collapsable",
+                    "description": ""
+                },
+                {
+                    "name": "collapsed",
+                    "description": ""
+                },
+                {
+                    "name": "disable-multilingual",
+                    "description": ""
+                },
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "with-credit",
+                    "description": ""
+                },
+                {
+                    "name": "with-link",
+                    "description": ""
+                },
+                {
+                    "name": "with-teaser",
+                    "description": ""
+                },
+                {
+                    "name": "with-teaser-complement",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-featured-image-manager",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "collapsable",
+                    "description": ""
+                },
+                {
+                    "name": "collapsed",
+                    "description": ""
+                },
+                {
+                    "name": "disable-multilingual",
+                    "description": ""
+                },
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "with-credit",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-file-single-manager",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "collapsable",
+                    "description": ""
+                },
+                {
+                    "name": "collapsed",
+                    "description": ""
+                },
+                {
+                    "name": "disable-multilingual",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "with-credit",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-files-manager",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "collapsable",
+                    "description": ""
+                },
+                {
+                    "name": "collapsed",
+                    "description": ""
+                },
+                {
+                    "name": "disable-multilingual",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "with-credit",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-image-single-manager",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "collapsable",
+                    "description": ""
+                },
+                {
+                    "name": "collapsed",
+                    "description": ""
+                },
+                {
+                    "name": "disable-multilingual",
+                    "description": ""
+                },
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "with-credit",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-images-manager",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "collapsable",
+                    "description": ""
+                },
+                {
+                    "name": "collapsed",
+                    "description": ""
+                },
+                {
+                    "name": "disable-multilingual",
+                    "description": ""
+                },
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "with-credit",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-banner",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "position",
+                    "description": ""
+                },
+                {
+                    "name": "sizes",
+                    "description": ""
+                },
+                {
+                    "name": "srcset",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-featured-image",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "sizes",
+                    "description": ""
+                },
+                {
+                    "name": "srcset",
+                    "description": ""
+                }
+            ]
+        },
+        {
+            "name": "x-media-library-helpers-image",
+            "description": "",
+            "attributes": [
+                {
+                    "name": "glide-params",
+                    "description": ""
+                },
+                {
+                    "name": "model",
+                    "description": "(required)"
+                },
+                {
+                    "name": "position",
+                    "description": ""
+                },
+                {
+                    "name": "sizes",
+                    "description": ""
+                },
+                {
+                    "name": "srcset",
+                    "description": ""
+                }
+            ]
+        }
+    ]
+}

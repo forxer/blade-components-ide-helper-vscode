@@ -5,10 +5,17 @@
   "version": "0.1.0",
   "publisher": "forxer",
   "license": "MIT",
-  "engines": { "vscode": "^1.85.0" },
-  "categories": ["Programming Languages", "Snippets"],
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
   "main": "./dist/extension.js",
-  "activationEvents": ["onLanguage:blade"],
+  "activationEvents": [
+    "onLanguage:blade"
+  ],
   "contributes": {
     "configuration": {
       "title": "Blade Components IDE Helper",
@@ -20,8 +27,12 @@
         },
         "bladeComponents.customDataGlobs": {
           "type": "array",
-          "items": { "type": "string" },
-          "default": [".vscode/*.html-data.json"],
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            ".vscode/*.html-data.json"
+          ],
           "description": "Workspace-relative globs for the VS Code Custom Data files to load."
         }
       }
@@ -44,6 +55,7 @@
     "@types/vscode": "^1.85.0",
     "@vscode/test-electron": "^2.4.1",
     "esbuild": "^0.21.0",
+    "glob": "^10.5.0",
     "mocha": "^10.4.0",
     "typescript": "^5.4.0"
   }
