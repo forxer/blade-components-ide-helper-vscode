@@ -68,4 +68,16 @@ describe('parseBladeContext', () => {
     assert.deepStrictEqual(ctx('<x-btn\n    variant="prim|"'),
       { kind: 'attribute-value', tag: 'x-btn', attribute: 'variant', bound: false, typed: 'prim' });
   });
+
+  it('keeps detecting context past angle brackets inside quoted values', () => {
+    assert.deepStrictEqual(ctx('<x-btn :disabled="$count > 5" siz|'),
+      { kind: 'attribute-name', tag: 'x-btn', typed: 'siz', bound: false, present: ['disabled'] });
+    assert.deepStrictEqual(ctx('<x-alert text="a < b" var|'),
+      { kind: 'attribute-name', tag: 'x-alert', typed: 'var', bound: false, present: ['text'] });
+  });
+
+  it('finds the tag start even after a stray angle bracket in text', () => {
+    assert.deepStrictEqual(ctx('1 < 2 and <x-btn siz|'),
+      { kind: 'attribute-name', tag: 'x-btn', typed: 'siz', bound: false, present: [] });
+  });
 });

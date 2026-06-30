@@ -28,4 +28,13 @@ describe('hoverTarget', () => {
   it('returns none when hovering content after the tag closes', () => {
     assert.deepStrictEqual(at('<x-btn>tex|t</x-btn>'), { kind: 'none' });
   });
+
+  it('still resolves the tag when an earlier value contains angle brackets', () => {
+    assert.deepStrictEqual(at('<x-btn :disabled="$count > 5" var|iant="x">'),
+      { kind: 'attribute', tag: 'x-btn', attribute: 'variant' });
+  });
+
+  it('returns none when hovering inside a value literal', () => {
+    assert.deepStrictEqual(at('<x-btn variant="prim|ary">'), { kind: 'none' });
+  });
 });

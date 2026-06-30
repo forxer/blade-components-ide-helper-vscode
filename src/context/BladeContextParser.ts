@@ -6,6 +6,40 @@ export type BladeContext =
 
 const WINDOW = 2000;
 
+/**
+ * Returns the index, within `text`, of the '<' that opens the tag enclosing the end of `text`
+ * (the cursor), or -1 if the cursor is not inside an open tag. Quote-aware: angle brackets inside
+ * quoted attribute values are ignored, and a '<' outside quotes always starts a fresh tag.
+ */
+export function findEnclosingTagStart(text: string): number {
+  let tagStart = -1;
+  let quote = '';
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (tagStart === -1) {
+      if (c === '<') {
+        tagStart = i;
+        quote = '';
+      }
+      continue;
+    }
+    if (quote) {
+      if (c === quote) {
+        quote = '';
+      }
+      continue;
+    }
+    if (c === '"' || c === "'") {
+      quote = c;
+    } else if (c === '<') {
+      tagStart = i;
+    } else if (c === '>') {
+      tagStart = -1;
+    }
+  }
+  return tagStart;
+}
+
 interface AttrScan {
   inValue: boolean;
   attribute: string;
@@ -153,16 +187,15 @@ export function parseBladeContext(text: string, offset: number): BladeContext {
   const start = Math.max(0, offset - WINDOW);
   const before = text.slice(start, offset);
 
-  const lt = before.lastIndexOf('<');
-  if (lt === -1) {
-    return { kind: 'none' };
-  }
-  const gt = before.lastIndexOf('>');
-  if (gt > lt) {
+  // Find the open tag enclosing the cursor with a quote-aware forward scan. A raw
+  // lastIndexOf of '<'/'>' is fooled by angle brackets inside quoted values, e.g. a
+  // bound expression `:disabled="$count > 5"` — the '>' there must not close the tag.
+  const tagStart = findEnclosingTagStart(before);
+  if (tagStart === -1) {
     return { kind: 'none' };
   }
 
-  const slice = before.slice(lt); // from '<' up to the cursor (contains no '>')
+  const slice = before.slice(tagStart); // from '<' up to the cursor
   const match = /^<x-([A-Za-z0-9-]*)/.exec(slice);
   if (!match) {
     return { kind: 'none' }; // '</x-', '<div', '<x ' without '-', etc.

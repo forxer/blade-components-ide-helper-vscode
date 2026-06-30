@@ -21,18 +21,42 @@ export function hoverTarget(text: string, offset: number): HoverTarget {
   }
   const word = text.slice(startWord, endWord);
 
-  // Find the enclosing open tag.
-  const upto = text.slice(0, startWord);
-  const lt = upto.lastIndexOf('<');
-  if (lt === -1) {
+  // Find the enclosing open tag with a quote-aware forward scan (so '<'/'>' inside quoted
+  // values don't fool the lookup) and learn whether the word itself sits inside a value.
+  const head = text.slice(0, startWord);
+  let tagStart = -1;
+  let quote = '';
+  for (let i = 0; i < head.length; i++) {
+    const c = head[i];
+    if (tagStart === -1) {
+      if (c === '<') {
+        tagStart = i;
+        quote = '';
+      }
+      continue;
+    }
+    if (quote) {
+      if (c === quote) {
+        quote = '';
+      }
+      continue;
+    }
+    if (c === '"' || c === "'") {
+      quote = c;
+    } else if (c === '<') {
+      tagStart = i;
+    } else if (c === '>') {
+      tagStart = -1;
+    }
+  }
+  if (tagStart === -1) {
     return { kind: 'none' };
   }
-  const between = text.slice(lt, startWord);
-  if (between.includes('>')) {
+  // An unterminated quote means the word is a value literal, not a tag/attribute name.
+  if (quote) {
     return { kind: 'none' };
   }
-  const head = text.slice(lt);
-  const tagMatch = /^<x-([A-Za-z0-9-]+)/.exec(head);
+  const tagMatch = /^<x-([A-Za-z0-9-]+)/.exec(text.slice(tagStart));
   if (!tagMatch) {
     return { kind: 'none' };
   }

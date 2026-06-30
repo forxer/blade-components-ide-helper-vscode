@@ -7,6 +7,8 @@ import { logWarnings } from './vscode/logger';
 
 const LANGUAGE = 'blade';
 
+let pendingReload: NodeJS.Timeout | undefined;
+
 function getConfig(): { enable: boolean; globs: string[] } {
   const config = vscode.workspace.getConfiguration('bladeComponents');
   return {
@@ -18,7 +20,6 @@ function getConfig(): { enable: boolean; globs: string[] } {
 export function activate(context: vscode.ExtensionContext): void {
   const store = new MetadataStore();
   let watchers: vscode.Disposable[] = [];
-  let debounce: NodeJS.Timeout | undefined;
 
   const reload = async (): Promise<void> => {
     const { globs } = getConfig();
@@ -28,14 +29,22 @@ export function activate(context: vscode.ExtensionContext): void {
   };
 
   const scheduleReload = (): void => {
-    if (debounce) {
-      clearTimeout(debounce);
+    if (pendingReload) {
+      clearTimeout(pendingReload);
     }
-    debounce = setTimeout(() => { void reload(); }, 150);
+    pendingReload = setTimeout(() => { void reload(); }, 150);
   };
 
+  // Recreate the watchers, disposing the previous set and replacing it in the subscriptions
+  // array (rather than appending) so repeated config changes don't accumulate stale handles.
   const setupWatchers = (): void => {
-    watchers.forEach(w => w.dispose());
+    watchers.forEach(w => {
+      w.dispose();
+      const index = context.subscriptions.indexOf(w);
+      if (index !== -1) {
+        context.subscriptions.splice(index, 1);
+      }
+    });
     const { globs } = getConfig();
     watchers = createWatchers(globs, scheduleReload);
     context.subscriptions.push(...watchers);
@@ -67,5 +76,9 @@ export function activate(context: vscode.ExtensionContext): void {
 }
 
 export function deactivate(): void {
-  // subscriptions are disposed by VS Code
+  // Cancel any in-flight debounced reload; the rest of the subscriptions are disposed by VS Code.
+  if (pendingReload) {
+    clearTimeout(pendingReload);
+    pendingReload = undefined;
+  }
 }
