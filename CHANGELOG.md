@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.1 (2026-07-01)
+------------------
+
+- Preselect the first suggestion and raise the sort priority of our completions.
+
 1.0.0 (2026-07-01)
 ------------------
 

@@ -44,6 +44,9 @@ export class BladeCompletionProvider implements vscode.CompletionItemProvider {
             item.range = new vscode.Range(startPos, position);
         }
 
+        item.sortText = descriptor.sortText;
+        item.preselect = descriptor.preselect;
+
         if (descriptor.documentation) {
             item.documentation = new vscode.MarkdownString(descriptor.documentation);
         }

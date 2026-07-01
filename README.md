@@ -12,6 +12,22 @@ and its consumers (e.g. `forxer/blade-ui-kit-bootstrap`).
 - **Attribute-value completion** for attributes with constrained values (variant, size, …).
 - **Hover** with the description of a tag or attribute.
 
+## Installation
+
+This extension is published on the **Open VSX Registry** and attached as a `.vsix` file to every
+**GitHub Release**. (A Visual Studio Marketplace listing is planned.)
+
+- **VSCodium / editors that use Open VSX:** open the Extensions view, search for
+  "Blade Components IDE Helper", and install it.
+- **Visual Studio Code (standard):** download `blade-components-ide-helper-<version>.vsix` from the
+  [latest release](https://github.com/forxer/blade-components-ide-helper-vscode/releases/latest),
+  then open the Command Palette (`Ctrl/Cmd+Shift+P`) → **Extensions: Install from VSIX…** and select
+  the downloaded file. No need to clone this repository.
+
+> **Remote-WSL / SSH / Dev Containers:** this is a *workspace* extension (it reads your project's
+> files), so install it **in the remote**, not on the local side. In the Extensions view, install it
+> from the section that shows your remote name (e.g. "WSL: Ubuntu — Installed").
+
 ## Requirements
 
 This extension activates on the `blade` language. Install a Blade language extension (the official
@@ -31,6 +47,10 @@ the command hot-reloads the suggestions — no window reload needed.
 - `bladeComponents.enable` (boolean, default `true`) — turn the extension on/off.
 - `bladeComponents.customDataGlobs` (string[], default `[".vscode/*.html-data.json"]`) — where to find
   the Custom Data files.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to build, test, debug and release the extension.
 
 ## License
 
