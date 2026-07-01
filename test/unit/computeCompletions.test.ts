@@ -62,4 +62,15 @@ describe('computeCompletions', () => {
     assert.deepStrictEqual(computeCompletions({ kind: 'attribute-value', tag: 'x-btn', attribute: 'disabled', bound: false, typed: '' }, store()), []);
     assert.deepStrictEqual(computeCompletions({ kind: 'none' }, store()), []);
   });
+
+  it('ranks our items first with a low sortText and preselects the first', () => {
+    const items = computeCompletions({ kind: 'attribute-value', tag: 'x-btn', attribute: 'variant', bound: false, typed: '' }, store());
+    // Every sortText starts with "0" so it sorts before "@…" directives and letter-prefixed snippets.
+    assert.ok(items.every(i => i.sortText.startsWith('0')));
+    // Strictly increasing keys preserve our own order.
+    const keys = items.map(i => i.sortText);
+    assert.deepStrictEqual(keys, [...keys].sort());
+    assert.strictEqual(items[0].preselect, true);
+    assert.strictEqual(items[1].preselect, false);
+  });
 });
