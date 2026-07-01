@@ -5,6 +5,21 @@
   "version": "0.1.0",
   "publisher": "forxer",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forxer/blade-components-ide-helper-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/forxer/blade-components-ide-helper-vscode/issues"
+  },
+  "homepage": "https://github.com/forxer/blade-components-ide-helper-vscode#readme",
+  "keywords": [
+    "blade",
+    "laravel",
+    "components",
+    "autocomplete",
+    "intellisense"
+  ],
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -42,6 +57,7 @@
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "bundle": "node esbuild.js",
+    "vscode:prepublish": "npm run bundle",
     "test:unit": "npm run compile && mocha",
     "test:integration": "npm run compile && node ./out/test/integration/runTests.js",
     "test": "npm run test:unit && npm run test:integration",
@@ -54,9 +70,11 @@
     "@types/node": "^20.11.0",
     "@types/vscode": "^1.85.0",
     "@vscode/test-electron": "^2.4.1",
+    "@vscode/vsce": "^3.2.0",
     "esbuild": "^0.21.0",
     "glob": "^10.5.0",
     "mocha": "^10.4.0",
+    "ovsx": "^0.10.0",
     "typescript": "^5.4.0"
   }
 }

@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Unit tests
+        run: npm run test:unit
+
+      - name: Package VSIX
+        run: npx @vscode/vsce package --no-dependencies -o extension.vsix
+
+      - name: Publish to VS Marketplace
+        run: npx @vscode/vsce publish --no-dependencies --packagePath extension.vsix -p ${{ secrets.VSCE_PAT }}
+
+      - name: Publish to Open VSX
+        run: npx ovsx publish extension.vsix -p ${{ secrets.OVSX_PAT }}
+
+      - name: Attach VSIX to GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: extension.vsix
