@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.2 (2026-07-02)
+------------------
+
+- First release published to the Visual Studio Marketplace.
+
 1.0.1 (2026-07-01)
 ------------------
 
