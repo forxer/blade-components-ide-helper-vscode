@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.4 (2026-07-02)
+------------------
+
+- Documentation: corrected the README install instructions (the extension is now on both the Visual
+  Studio Marketplace and Open VSX) and refreshed the contributor guide.
+
 1.0.3 (2026-07-02)
 ------------------
 
