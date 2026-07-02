@@ -84,9 +84,15 @@ The F5 configuration lives in `.vscode/launch.json`; it runs `npm run bundle` fi
 
 ## Git workflow
 
-- **`develop`** is the default branch — do your work there (or on `feature/*` branches off it).
-- **`main`** is protected and reserved for releases: no direct pushes; changes arrive via a Pull
-  Request, and the CI (unit tests) must be green before merging.
+Two long-lived branches:
+
+- **`main`** — the **default** branch; always reflects the **latest published version**. Protected:
+  no direct pushes, changes land via Pull Request with green CI, releases are tagged here.
+- **`develop`** — the **next version** in progress; the day-to-day integration branch.
+
+Do your work on `develop`, or on a short-lived `feature/*` branch created off `develop` and merged
+back into it. When the next version is ready, open a Pull Request **`develop → main`**, merge it once
+CI is green, then tag the release on `main` (see below).
 
 ## Releasing a new version
 
