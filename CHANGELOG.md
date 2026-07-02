@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.3 (2026-07-02)
+------------------
+
+- Add an extension icon.
+- Update dev dependencies to clear all npm audit vulnerabilities.
+
 1.0.2 (2026-07-02)
 ------------------
 
