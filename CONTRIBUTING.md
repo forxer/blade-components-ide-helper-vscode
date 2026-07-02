@@ -1,9 +1,14 @@
 # Contributing / Developer guide
 
-This guide assumes you know PHP/Composer but are new to the VS Code / Node / TypeScript world. Where
-useful, it draws the parallel with tools you already know.
+Thanks for your interest in contributing! This guide covers how to build, test, debug and release the
+extension. Bug reports, feature requests and pull requests are all welcome — open an
+[issue](https://github.com/forxer/blade-components-ide-helper-vscode/issues) to discuss anything
+non-trivial before you start.
 
-## The ecosystem in one table
+## Coming from PHP? (optional)
+
+If you come from a PHP/Composer background and are new to the Node / TypeScript world, this table maps
+the tools you already know to their Node equivalents. Skip it if you already work with Node.
 
 | You know (PHP)        | Here (Node)              | Role |
 |-----------------------|--------------------------|------|
@@ -88,13 +93,17 @@ Two long-lived branches:
 
 - **`main`** — the **default** branch; always reflects the **latest published version**. Protected:
   no direct pushes, changes land via Pull Request with green CI, releases are tagged here.
-- **`develop`** — the **next version** in progress; the day-to-day integration branch.
+- **`develop`** — the **next version** in progress; the integration branch. **Base your work on it.**
 
-Do your work on `develop`, or on a short-lived `feature/*` branch created off `develop` and merged
-back into it. When the next version is ready, open a Pull Request **`develop → main`**, merge it once
-CI is green, then tag the release on `main` (see below).
+**External contributors:** fork the repository, create a `feature/*` branch off `develop`, and open a
+Pull Request **against `develop`**. Keep pull requests focused, and make sure `npm run test:unit`
+passes before pushing.
 
-## Releasing a new version
+**Maintainers:** work on `develop` (or short-lived `feature/*` branches merged back into it). When the
+next version is ready, open a Pull Request **`develop → main`**, merge it once CI is green, then tag
+the release on `main` (see below).
+
+## Releasing a new version (maintainers only)
 
 Versions are `MAJOR.MINOR.PATCH` (SemVer), **digits only** — the Marketplace/Open VSX reject suffixes
 like `-beta` (pre-releases use a publish flag instead, not the version string).
@@ -120,5 +129,4 @@ secret is absent, so a missing one never breaks the release:
 
 - `OVSX_PAT` — Open VSX token (publishes to the Open VSX Registry).
 - `VSCE_PAT` — Visual Studio Marketplace token (Azure DevOps PAT, scope *Marketplace › Manage*,
-  "All accessible organizations"). Currently **not configured** — the Marketplace step is skipped
-  until it is added. See the project notes for the Azure DevOps prerequisite.
+  "All accessible organizations").

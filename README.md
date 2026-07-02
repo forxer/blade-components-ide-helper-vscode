@@ -14,12 +14,15 @@ and its consumers (e.g. `forxer/blade-ui-kit-bootstrap`).
 
 ## Installation
 
-This extension is published on the **Open VSX Registry** and attached as a `.vsix` file to every
-**GitHub Release**. (A Visual Studio Marketplace listing is planned.)
+This extension is published on the **Visual Studio Marketplace** and the **Open VSX Registry**, and is
+also attached as a `.vsix` file to every **GitHub Release**.
 
+- **Visual Studio Code (standard):** open the Extensions view, search for
+  "Blade Components IDE Helper", and install it — or install it from its
+  [Marketplace page](https://marketplace.visualstudio.com/items?itemName=forxer.blade-components-ide-helper).
 - **VSCodium / editors that use Open VSX:** open the Extensions view, search for
   "Blade Components IDE Helper", and install it.
-- **Visual Studio Code (standard):** download `blade-components-ide-helper-<version>.vsix` from the
+- **Manual install (any editor):** download `blade-components-ide-helper-<version>.vsix` from the
   [latest release](https://github.com/forxer/blade-components-ide-helper-vscode/releases/latest),
   then open the Command Palette (`Ctrl/Cmd+Shift+P`) → **Extensions: Install from VSIX…** and select
   the downloaded file. No need to clone this repository.
