@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.0.5 (2026-11-06)
+------------------
+
+- Deprecated: the extension is no longer maintained, and neither is the PHP package that generates
+  its metadata (`forxer/blade-components-ide-helper`). The README now says so.
+
 1.0.4 (2026-07-02)
 ------------------
 
